@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resonate Frequency - Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #6f7cb9;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+            background-color: white;
+            margin: 20px auto;
+            max-width: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .login-form {
+            display: flex;
+            flex-direction: column;
+        }
+        .login-form input {
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .login-form button {
+            padding: 10px;
+            background-color: #6f7cb9;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .login-form button:hover {
+            background-color: #5a68a5;
+        }
+        .qr-login {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .qr-login img {
+            width: 150px;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Login to Resonate Frequency</h1>
+    </header>
+    <main>
+        <form class="login-form" action="login_process.html" method="post">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <div class="qr-login">
+            <p>Or login with QR code:</p>
+            <img src="random_qr.png" alt="QR Code for Login">
+        </div>
+        <p style="text-align: center;">Don't have an account? <a href="register.html">Register here</a></p>
+        <p style="text-align: center;"><a href="index.html">Return to Home</a></p>
+    </main>
+    <footer>
+        <p>&copy; 2023 Resonate Frequency. All rights reserved.</p>
+    </footer>
+</body>
+</html>

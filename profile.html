@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resonate Frequency - Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #6f7cb9;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+            background-color: white;
+            margin: 20px auto;
+            max-width: 800px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .profile-section {
+            display: flex;
+            align-items: center;
+        }
+        .profile-picture {
+            margin-right: 20px;
+        }
+        .profile-picture img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+        }
+        .profile-info {
+            flex: 1;
+        }
+        .profile-info h2 {
+            margin: 10px 0;
+        }
+        .profile-info p {
+            margin: 5px 0;
+        }
+        .recent-posts, .badges, .likes {
+            margin-top: 20px;
+        }
+        .recent-posts ul, .badges ul {
+            list-style: none;
+            padding: 0;
+        }
+        .recent-posts ul li, .badges ul li {
+            background-color: #f4f4f4;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }   
+        .profile-section input[type="file"] {
+            display: none;
+        }
+        .profile-section label {
+            background-color: white;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .badges img {
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        .badge-description {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .badges img:hover + .badge-description {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>User Profile</h1>
+    </header>
+    <main>
+        <div class="profile-section">
+            <div class="profile-picture">
+                <label for="file-input">
+                    <img id="profile-picture" src="user_profile_example.jpg" alt="Profile Picture">
+                </label>
+                <input type="file" id="file-input" accept="image/*" onchange="updateProfilePicture(event)">
+            </div>
+            <div class="profile-info">
+                <h2>Max</h2>
+                <p>User ID: <strong>123456</strong></p>
+                <p>Joined: January 1, 2023</p>
+                <p>Seniority: 1 year</p>
+                <p>Biograhpy: Hi guys, I am Max, a student at pitt, like singing, jumping, and basketball</p>
+                <div class="badges">
+                    <h3>Badges</h3>
+                    <img src="badge1.png" alt="Badge 1">
+                    <div class="badge-description">Description for Badge 1</div>
+                    <img src="badge2.png" alt="Badge 2">
+                    <div class="badge-description">Description for Badge 2</div>
+                    <img src="badge3.png" alt="Badge 3">
+                    <div class="badge-description">Description for Badge 3</div>
+                </div>
+            </div>
+        </div>
+        <div class="recent-posts">
+            <h3>Recent Posts</h3>
+            <ul>
+                <li>Post 1</li>
+                <li>Post 2</li>
+                <li>Post 3</li>
+            </ul>
+        </div>
+        <div class="likes">
+            <h3>Likes</h3>
+            <p>You have been liked <strong>123</strong> times by other users.</p>
+        </div>
+        <p style="text-align: center;"><a href="index.html">Return to Home</a></p>
+    </main>
+    <footer>
+    </footer>
+    <script>
+        function updateProfilePicture(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profile-picture').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+</body>
+</html>

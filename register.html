@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resonate Frequency - Register</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #6f7cb9;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+            background-color: white;
+            margin: 20px auto;
+            max-width: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .register-form {
+            display: flex;
+            flex-direction: column;
+        }
+        .register-form input {
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .register-form button {
+            padding: 10px;
+            background-color: #6f7cb9;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .register-form button:hover {
+            background-color: #5a68a5;
+        }
+        .google-signup {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .google-signup button {
+            background-color: #db4437;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .google-signup button:hover {
+            background-color: #c33d2e;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Register at Resonate Frequency</h1>
+    </header>
+    <main>
+        <form class="register-form" action="register_process.html" method="post">
+            <input type="email" name="email" placeholder="Email" required>
+            <button type="button" onclick="sendVerificationCode()">Send Verification Code</button>
+            <input type="text" name="verification_code" placeholder="Verification Code" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Register</button>
+        </form>
+        <div class="google-signup">
+            <p>Or sign up with Google:</p>
+            <button onclick="googleSignup()">Sign up with Google</button>
+        </div>
+        <p style="text-align: center;">Already have an account? <a href="login.html">Login here</a></p>
+        <p style="text-align: center;"><a href="index.html">Return to Home</a></p>
+    </main>
+    <footer>
+        <p>&copy; 2023 Resonate Frequency. All rights reserved.</p>
+    </footer>
+    <script>
+        function sendVerificationCode() {
+            // Implement the function to send a verification code to the user's email
+            alert('Verification code sent to your email.');
+        }
+        function googleSignup() {
+            // Implement the function to handle Google sign-up
+            alert('Redirecting to Google sign-up.');
+        }
+    </script>
+</body>
+</html>
