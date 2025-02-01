@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board 1 - Resonate Frequency</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #6f7cb9;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        main {
+            display: flex;
+            justify-content: space-between;
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+            background-color: white;
+            margin: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .sidebar {
+            width: 300px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            margin: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .discussion-topic {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .discussion-topic h2 {
+            color: #6f7cb9;
+        }
+        .comments {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .comment {
+            background-color: #f4f4f4;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .comment .user {
+            font-weight: bold;
+        }
+        .comment .moderator {
+            color: #6f7cb9;
+        }
+        .comment .actions {
+            margin-top: 10px;
+        }
+        .comment .actions a {
+            margin-right: 10px;
+            color: #6f7cb9;
+            text-decoration: none;
+        }
+        .actions .vote {
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .sub-comments {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .pagination {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .pagination a {
+            margin: 0 5px;
+            text-decoration: none;
+            color: #6f7cb9;
+        }
+        .pagination .current-page {
+            font-weight: bold;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        .popup button {
+            margin: 10px;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        .tooltip {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            z-index: 1001;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Board 1 - Resonate Frequency</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="guidelines.html">Guidelines</a></li>
+                <li><a href="report.html">Report</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="content">
+            <div class="discussion-topic">
+                <h2>Discussion Topic: The Impact of Social Media on Mental Health</h2>
+                <p>Moderator: Jane Doe</p>
+            </div>
+            <div class="comments">
+                <div class="comment" id="comment-1">
+                    <p class="user">1st floor User1:</p>
+                    <p>I think social media has both positive and negative effects on mental health. It can be a great way to connect with others, but it can also lead to feelings of inadequacy.</p>
+                    <div class="actions">
+                        <span class="vote" onclick="incrementVote(this)">&#x25B2; <span class="count">0</span></span>
+                        <span class="vote" onclick="decrementVote(this)">&#x25BC; <span class="count">0</span></span>
+                        <a href="#">Share</a>
+                        <a href="#" onclick="toggleSubCommentForm(this)">Reply</a>
+                    </div>
+                    <div class="sub-comments">
+                        <!-- Sub-comments will be added here -->
+                    </div>
+                </div>
+                <div class="comment" id="comment-2">
+                    <p class="user moderator">2nd floor Moderator (Jane Doe):</p>
+                    <p>Thank you for your input, User1. It's important to consider both sides of the argument.</p>
+                    <div class="actions">
+                        <span class="vote" onclick="incrementVote(this)">&#x25B2; <span class="count">0</span></span>
+                        <span class="vote" onclick="decrementVote(this)">&#x25BC; <span class="count">0</span></span>
+                        <a href="#">Share</a>
+                        <a href="#" onclick="toggleSubCommentForm(this)">Reply</a>
+                    </div>
+                    <div class="sub-comments">
+                        <!-- Sub-comments will be added here -->
+                    </div>
+                </div>
+                <div class="comment" id="comment-3">
+                    <p class="user">3rd floor User2:</p>
+                    <p>I agree with User1. Social media can be a double-edged sword. It's all about how we use it.</p>
+                    <div class="actions">
+                        <span class="vote" onclick="incrementVote(this)">&#x25B2; <span class="count">0</span></span>
+                        <span class="vote" onclick="decrementVote(this)">&#x25BC; <span class="count">0</span></span>
+                        <a href="#">Share</a>
+                        <a href="#" onclick="toggleSubCommentForm(this)">Reply</a>
+                    </div>
+                    <div class="sub-comments">
+                        <!-- Sub-comments will be added here -->
+                    </div>
+                </div>
+            </div>
+            <div class="pagination">
+                <a href="#">&laquo; Previous</a>
+                <a href="#" class="current-page">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">Next &raquo;</a>
+            </div>
+            <div class="add-comment">
+                <h3>Add a Comment</h3>
+                <form id="addCommentForm">
+                    <textarea id="newCommentText" placeholder="Enter your comment here..." rows="4" cols="50"></textarea>
+                    <br><br>
+                    <button type="button" onclick="checkComment()">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="sidebar">
+            <h3>Moderator's Announcement</h3>
+            <p>Welcome to the discussion board! Please adhere to the following rules:</p>
+            <ul>
+                <li>Be respectful to others.</li>
+                <li>No spamming or advertising.</li>
+                <li>Stay on topic.</li>
+                <li>Report any inappropriate content.</li>
+            </ul>
+            <h3>Board Rules</h3>
+            <ul>
+                <li>Use appropriate language.</li>
+                <li>Do not share personal information.</li>
+                <li>Respect the privacy of others.</li>
+                <li>Follow the guidelines set by the moderators.</li>
+            </ul>
+        </div>
+    </main>
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <p>Your comment contains language that may be considered hateful. Do you want to continue sending it?</p>
+        <button onclick="sendComment()">Continue</button>
+        <button onclick="closePopup()">Cancel</button>
+    </div>
+    <div class="tooltip" id="tooltip"></div>
+    <script>
+        function incrementVote(element) {
+            let countSpan = element.querySelector('.count');
+            countSpan.textContent = parseInt(countSpan.textContent) + 1;
+        }
+
+        function decrementVote(element) {
+            let countSpan = element.querySelector('.count');
+            countSpan.textContent = parseInt(countSpan.textContent) + 1;
+        }
+
+        function toggleSubCommentForm(element) {
+            let subCommentsDiv = element.parentElement.nextElementSibling;
+            let form = subCommentsDiv.querySelector('form');
+            if (form) {
+                form.remove();
+            } else {
+                form = document.createElement('form');
+                form.innerHTML = `
+                    <textarea placeholder="Add a comment..."></textarea>
+                    <button type="button" onclick="checkSubComment(this)">Submit</button>
+                `;
+                subCommentsDiv.appendChild(form);
+                form.querySelector('textarea').focus();
+            }
+        }
+
+        async function checkSubComment(button) {
+            const form = button.parentElement;
+            const textArea = form.querySelector('textarea');
+            const subCommentText = textArea.value;
+            if (subCommentText.trim() === '') {
+                alert('Comment cannot be empty');
+                return;
+            }
+            
+            // here !
+            //const a
+            //const 
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${apiKey}`
+                    },
+                    body: JSON.stringify({
+                        model: "gpt-4-turbo",
+                        messages: [
+                            { role: "system", content: "You are an ambassador committed to the great unity of the people of the world, \
+                                    explaining the cultural differences between various nation-states, and being able to explain the hot\
+                                    memes in various countries, eliminate unnecessary misunderstandings, and purify the Internet environment.\
+                                    Therefore, if you feel that the current language will cause some misunderstandings, or that some slang and \
+                                    local expressions are incomprehensible to people in other places, you should say I can't understand within\
+                                    your explanation."},
+                            { role: "system", content: "You are an online hate speech detector. If it is online hate, you say 'hateful'" },
+                            { role: "user", content: subCommentText }
+                        ],
+                        max_tokens: 150
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    console.error('API Error:', errorData);
+                    alert(`Error: ${errorData.error.message}`);
+                    return;
+                }
+
+                const data = await response.json();
+                const gptResponse = data.choices[0].message.content;
+
+                if (gptResponse.includes("hateful")) {
+                    document.getElementById('overlay').style.display = 'block';
+                    document.getElementById('popup').style.display = 'block';
+                } else {
+                    addSubComment(button);
+                    if (gptResponse.includes("I can't understand")) {
+                        const newSubComment = form.previousElementSibling;
+                        const tooltip = document.getElementById('tooltip');
+                        tooltip.innerText = gptResponse;
+                        newSubComment.addEventListener('mouseover', () => {
+                            tooltip.style.display = 'block';
+                            const rect = newSubComment.getBoundingClientRect();
+                            tooltip.style.left = `${rect.left}px`;
+                            tooltip.style.top = `${rect.bottom + window.scrollY + 10}px`;
+                        });
+                        newSubComment.addEventListener('mouseout', () => {
+                            tooltip.style.display = 'none';
+                        });
+                    }
+                }
+            } catch (error) {
+                console.error('Error calling OpenAI API:', error);
+                alert('An error occurred. Please try again.');
+            }
+        }
+
+        function addSubComment(button) {
+            let form = button.parentElement;
+            let textArea = form.querySelector('textarea');
+            let subCommentsDiv = form.parentElement;
+            let newComment = document.createElement('div');
+            newComment.className = 'comment';
+            newComment.id = 'sub-comment-' + new Date().getTime(); // Unique identifier
+            let timestamp = new Date().toLocaleString(); // Timestamp
+            newComment.innerHTML = `
+                <p class="user">Sub-comment (${timestamp}):</p>
+                <p>${textArea.value}</p>
+                <div class="actions">
+                    <span class="vote" onclick="incrementVote(this)">&#x25B2; <span class="count">0</span></span>
+                    <span class="vote" onclick="decrementVote(this)">&#x25BC; <span class="count">0</span></span>
+                    <a href="#">Share</a>
+                </div>
+            `;
+            subCommentsDiv.insertBefore(newComment, form);
+            textArea.value = '';
+        }
+
+        async function checkComment() {
+            const newCommentText = document.getElementById('newCommentText').value;
+            if (newCommentText.trim() === '') {
+                alert('Comment cannot be empty');
+                return;
+            }
+            
+            // here
+            //
+            //
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${apiKey}`
+                    },
+                    body: JSON.stringify({
+                        model: "gpt-3.5-turbo",
+                        messages: [
+                            { role: "system", content: "You are an ambassador committed to the great unity of the people of the world, \
+                                    explaining the cultural differences between various nation-states, and being able to explain the hot\
+                                    memes in various countries, eliminate unnecessary misunderstandings, and purify the Internet environment.\
+                                    Therefore, if you feel that the current language will cause some misunderstandings, or that some slang and \
+                                    local expressions are incomprehensible to people in other places, you should provide explanations."},
+                            { role: "system", content: "You are an online hate speech detector. If it is online hate, you say 'hateful'" },
+                            { role: "user", content: newCommentText }
+                        ],
+                        max_tokens: 150
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    console.error('API Error:', errorData);
+                    alert(`Error: ${errorData.error.message}`);
+                    return;
+                }
+
+                const data = await response.json();
+                const gptResponse = data.choices[0].message.content;
+
+                if (gptResponse.includes("hateful")) {
+                    document.getElementById('overlay').style.display = 'block';
+                    document.getElementById('popup').style.display = 'block';
+                } else {
+                    addNewComment();
+                    const newComment = document.querySelector('.comments .comment:last-child');
+                    const tooltip = document.getElementById('tooltip');
+                    tooltip.innerText = gptResponse;
+                    newComment.addEventListener('mouseover', () => {
+                        tooltip.style.display = 'block';
+                        const rect = newComment.getBoundingClientRect();
+                        tooltip.style.left = `${rect.left}px`;
+                        tooltip.style.top = `${rect.bottom + window.scrollY + 10}px`;
+                    });
+                    newComment.addEventListener('mouseout', () => {
+                        tooltip.style.display = 'none';
+                    });
+                }
+            } catch (error) {
+                console.error('Error calling OpenAI API:', error);
+                alert('An error occurred. Please try again.');
+            }
+        }
+
+        function closePopup() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        function sendComment() {
+            closePopup();
+            addNewComment();
+        }
+
+        function addNewComment() {
+            const newCommentText = document.getElementById('newCommentText').value;
+            if (newCommentText.trim() === '') {
+                alert('Comment cannot be empty');
+                return;
+            }
+            const commentsDiv = document.querySelector('.comments');
+            const newComment = document.createElement('div');
+            newComment.className = 'comment';
+            newComment.id = 'comment-' + new Date().getTime(); // Unique identifier
+            let timestamp = new Date().toLocaleString(); // Timestamp
+            newComment.innerHTML = `
+                <p class="user">New Comment (${timestamp}):</p>
+                <p>${newCommentText}</p>
+                <div class="actions">
+                    <span class="vote" onclick="incrementVote(this)">&#x25B2; <span class="count">0</span></span>
+                    <span class="vote" onclick="decrementVote(this)">&#x25BC; <span class="count">0</span></span>
+                    <a href="#">Share</a>
+                    <a href="#" onclick="toggleSubCommentForm(this)">Reply</a>
+                    <a href="#" onclick="deleteComment(this)">Delete</a>
+                </div>
+                <div class="sub-comments">
+                    <!-- Sub-comments will be added here -->
+                </div>
+            `;
+            commentsDiv.appendChild(newComment);
+            document.getElementById('newCommentText').value = '';
+        }
+
+        function deleteComment(element) {
+            const commentDiv = element.closest('.comment');
+            commentDiv.remove();
+        }
+    </script>
+</body>
+</html>
